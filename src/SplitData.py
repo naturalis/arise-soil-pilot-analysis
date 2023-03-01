@@ -13,28 +13,45 @@ def location(log_extractNrs, log_loc):
         matching.append(i[0])
   return matching
 
-def basic_file(raw_data, loc_file):
-  writer = csv.writer(loc_file)
-  writer.writerow(raw_data['Kingdom'])
-  writer.writerow(raw_data['Phylum'])
-  writer.writerow(raw_data['Class'])
-  writer.writerow(raw_data['Order'])
-  writer.writerow(raw_data['Family'])
-  writer.writerow(raw_data['Genus'])
-  writer.writerow(raw_data['Species'])
+def basic_file(raw_data):
+  seq = []
+  kingdomlist, phylumlist, classlist = [], [], []
+  orderlist, familylist, genuslist, specieslist = [],[],[],[]
+  for i in raw_data['Unnamed: 0']:
+    seq.append(i)
+  for i in raw_data['Kingdom']:
+    kingdomlist.append(i)
+  for i in raw_data['Phylum']:
+    phylumlist.append(i)
+  for i in raw_data['Class']:
+    classlist.append(i)
+  for i in raw_data['Order']:
+    orderlist.append(i)
+  for i in raw_data['Family']:
+    familylist.append(i)
+  for i in raw_data['Genus']:
+    genuslist.append(i)
+  for i in raw_data['Species']:
+    specieslist.append(i)
+  new_dic = {'Sequence': seq, 'Kingdom': kingdomlist, 'Phylum': phylumlist, 'Class': classlist, 'Order': orderlist,
+             'Family': familylist, 'Genus': genuslist, 'Species': specieslist}
+  loc_file = pd.DataFrame(new_dic, columns = ['Sequence', 'Kingdom', 'Phylum', 'Class', 'Order',
+                                              'Family', 'Genus', 'Species'])
   return loc_file
 
-def new_files(raw_data, matches, loc_file):
-  #print(raw_data[2])
+def new_files(raw_data, matches, basics_file):
   for i in matches:
-    print(raw_data[i])  
+    ilist = []
+    for j in raw_data[i]:
+      ilist.append(j)
+    basics_file[i] = ilist
+  return basics_file
   
 
 def main():
   raw_data = pd.read_csv('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/ASVtab_raw.csv')
   log_extractNrs = pd.read_excel('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/ARISE_Sample_information_logbook.xlsx', header=None, sheet_name='Extract nrs', usecols=[0,1])
   log_loc1 = pd.read_excel('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/ARISE_Sample_information_logbook.xlsx', sheet_name='Location 1 list', usecols=[1])
-  location1 = open('Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/loc1_file', 'w')
   #log_loc2 = pd.read_excel('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/ARISE_Sample_information_logbook.xlsx', sheet_name='Location 2 list', usecols=[1])
   log_loc3 = pd.read_excel('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/ARISE_Sample_information_logbook.xlsx', sheet_name='Location 3 list', usecols=[1])
   
@@ -43,9 +60,18 @@ def main():
   #loc2_match = location(log_extractNrs, log_loc2)
   loc3_match = location(log_extractNrs, log_loc3)
 
-  location1 = basic_file(raw_data, location1)
-  print(location1)
-  #new_files(raw_data, loc1_match, location1)
+  basics_file = basic_file(raw_data)
+
+  location1 = new_files(raw_data, loc1_match, basics_file)
+  location1.to_csv('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location1.csv', index=False)
+
+  #location2 = new_files(raw_data, loc2_match, basics_file)
+  #location2.to_csv('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location2.csv', index=False)
+
+  location3 = new_files(raw_data, loc3_match, basics_file)
+  location3.to_csv('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location3.csv', index=False)
+
+
 
 if __name__ == "__main__":
     main()
