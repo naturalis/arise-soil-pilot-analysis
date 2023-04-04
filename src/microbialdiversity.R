@@ -15,7 +15,7 @@ library(microbiomeutilities)
 BiocManager::install("biomformat")
 
 loc1 <- read_csv2phyloseq(otu.file = "~/Desktop/Bioinformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location1OTU.csv", sep = ",")
-otu.file = "~/Desktop/Bioinformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location1OTU.csv"
+blub = read.csv("~/Desktop/Bioinformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location1OTU.csv")
 loc1 <- read_csv2phyloseq(
   otu.file = "~/Desktop/Bioinformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location1OTU.csv",
   taxonomy.file = NULL,
@@ -23,4 +23,4 @@ loc1 <- read_csv2phyloseq(
   sep = ","
 )
 
-loc1OTU_data <- read_csv2phyloseq("~/Desktop/Bioinformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location1OTU.csv", sep = ",")
+loc1OTU_data <- read_csv2phyloseq(otu.file = blub, sep = ",")
