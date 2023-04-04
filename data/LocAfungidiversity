@@ -1,0 +1,45 @@
+                                                          p__Annelida                      p__Anthophyta 
+                              2940                                  4                                124 
+                p__Aphelidiomycota                      p__Arthropoda                      p__Ascomycota 
+                                 8                                 14                               3490 
+                  p__Basidiomycota              p__Blastocladiomycota                       p__Bryophyta 
+                               901                                  4                                 30 
+                       p__Cercozoa                     p__Chlorophyta                 p__Chytridiomycota 
+                                21                                426                                 66 
+                     p__Ciliophora                   p__Glomeromycota                            p__GS01 
+                               601                                 46                                  1 
+                  p__Haplosporidia p__Heterolobosa_phy_Incertae_sedis                 p__Kickxellomycota 
+                                14                                  7                                  3 
+             p__Monoblepharomycota               p__Mortierellomycota                    p__Mucoromycota 
+                                24                                 99                                 28 
+                       p__Nematoda                      p__Ochrophyta                   p__Olpidiomycota 
+                                93                                  1                                  1 
+                  p__Rozellomycota                   p__Zoopagomycota 
+                               303                                 47 
+                               
+                               
+The first '2940' is Untiteled, so unidentified.
+The thesis of Sophie states:
+The fungi diversity (amount of reads in %) of location 
+A. Ascomycota (65,51%) and 
+Basidiomycota (29,00%) are the most common phyla. 
+Chytridiomycota (0,07%), 
+Glomeromycota (0,24%), 
+Monoblepharomycota (0,87%), 
+Mortierellomycota (2,49%), 
+Mucoromycota (0,29%), 
+Rozellomycota (1,36%), and 
+Zoopagomycota (0,16%), make-up the remaining phyla. 0,04 %
+
+Our data states:
+Total: 9296
+Unidentifies: 2940 -> total = 9296-2940=6356
+Ascomycota ->  54,91 %
+Basidiomycota -> 14,18%
+Chlorophyta -> 6,70%
+Chytridiomycota -> 1,04%
+Ciliophora -> 9,46%
+Mortierellomycota -> 1,56%
+Nematoda -> 1,46%
+Rozellomycota -> 4,77%
+Zoopagomycota -> 0,74%

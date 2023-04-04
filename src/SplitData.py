@@ -56,14 +56,14 @@ def main():
   log_loc3 = pd.read_excel('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/ARISE_Sample_information_logbook.xlsx', sheet_name='Location 3 list', usecols=[1])
   
   log_extractNrs = log_extractNrs.values.tolist()
-  loc1_match = location(log_extractNrs, log_loc1)
+  #loc1_match = location(log_extractNrs, log_loc1)
   #loc2_match = location(log_extractNrs, log_loc2)
   loc3_match = location(log_extractNrs, log_loc3)
 
   basics_file = basic_file(raw_data)
 
-  location1 = new_files(raw_data, loc1_match, basics_file)
-  location1.to_csv('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location1.csv', index=False)
+  #location1 = new_files(raw_data, loc1_match, basics_file)
+  #location1.to_csv('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location1.csv', index=False)
 
   #location2 = new_files(raw_data, loc2_match, basics_file)
   #location2.to_csv('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location2.csv', index=False)
