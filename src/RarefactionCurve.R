@@ -8,5 +8,5 @@ data(BCI)
 head(BCI)
 
 S <- specnumber(loc1)
-(raremax <- min(rowSums(loc1$Phylum)))
+(raremax <- min(rowSums(loc1)))
 Srare <- rarefy(loc1, raremax)
