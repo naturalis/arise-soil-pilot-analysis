@@ -19,7 +19,7 @@ loc3_asv <- read.csv("~/Desktop/Bioinformatica/Afstuderen/Naturalis/arise-soil-p
 pie(table(loc3_asv$Phylum))
 unique(loc1_asv$Phylum)
 
-OTUloc1data <- AnnotatedDataFrame(loc1_data)
-row.names(OTUloc1data) <- loc1_data$OTUnr
-OTUdata
+OTUloc1data <- AnnotatedDataFrame(loc1OTU_data)
+row.names(OTUloc1data) <- loc1OTU_data$OTUnr
+OTUloc1data
 
