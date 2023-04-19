@@ -11,10 +11,6 @@ loc1zt_df <- as.data.frame(loc1zt)
 rownames(loc1zt_df) <- loc1zt_df$enummers
 loc1zt_df <- loc1zt_df[,-1]
 
-### Werkt tot nu toe niet
-loc1zt_df <- loc1zt %>%
-  pivot_wider(names_from = row, values_from = "value")
-
 loc1ztt <- loc1zt %>%
   bind_cols(Group = rownames(loc1zt_df),.) %>%
   select(Group, starts_with("OTU")) %>%
@@ -30,7 +26,7 @@ rand <- loc1ztt %>%
   mutate(name = sample(name)) %>%
   count(Group, name, name="value")
 
-loc1ztt %>%
+metric_statistics <- loc1ztt %>%
   group_by(Group) %>%
   summarize(sobs = richness(value),
             shannon = shannon(value),
