@@ -63,6 +63,22 @@ rand %>%
   geom_smooth() +
   facet_wrap(~metric, nrow = 4, scales = "free_y")
 
+
+### Zelfde maar dan met vegan packages (random sampling)
+### Simpson is voornamelijk anders
+rand %>%
+  group_by(Group) %>%
+  summarize(sobs = specnumber(value),
+            shannon = diversity(value, index = "shannon"),
+            simpson = diversity(value, index="simpson"),
+            invsimpson = 1/simpson,
+            n = sum(value)) %>%
+  pivot_longer(cols = c(sobs, shannon, invsimpson, simpson),
+               names_to = "metric") %>%
+  ggplot(aes(x=n, y=value)) +
+  geom_point() +
+  geom_smooth() +
+  facet_wrap(~metric, nrow = 4, scales = "free_y")
   
 
 ### 3 functions to calculate the richness, simpson and shannon
