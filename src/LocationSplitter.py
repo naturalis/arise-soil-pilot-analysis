@@ -74,13 +74,6 @@ def main():
   location3S3 = new_files(raw_data, loc3S3_match, basics_file)
   location3S3.to_csv('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location3otuS3.csv', index=False)
 
-  #location2 = new_files(raw_data, loc2_match, basics_file)
-  #location2.to_csv('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location2.csv', index=False)
-
-  #location3 = new_files(raw_data, loc3_match, basics_file)
-  #location3.to_csv('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location3OTU.csv', index=False)
-
-
 
 if __name__ == "__main__":
     main()
