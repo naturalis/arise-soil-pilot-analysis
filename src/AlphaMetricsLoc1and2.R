@@ -3,16 +3,17 @@ library(tidyverse)
 library(dplyr)
 
 loc1zt = read.csv("~/Desktop/Bioinformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location1OTUzTax2.csv", sep = ';', row.names = 1, header = TRUE)
+loc3zt = read.csv("~/Desktop/Bioinformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location3OTUzTax.csv", sep = ';', row.names = 1, header = TRUE)
 
-loc1zt <- as.data.frame(t(loc1zt))
-loc1zt <- tibble::rownames_to_column(loc1zt, "enummers")
+loc3zt <- as.data.frame(t(loc3zt))
+loc3zt <- tibble::rownames_to_column(loc3zt, "enummers")
 
-loc1zt_df <- as.data.frame(loc1zt)
-rownames(loc1zt_df) <- loc1zt_df$enummers
-loc1zt_df <- loc1zt_df[,-1]
+loc3zt_df <- as.data.frame(loc3zt)
+rownames(loc3zt_df) <- loc3zt_df$enummers
+loc3zt_df <- loc3zt_df[,-1]
 
-loc1ztt <- loc1zt %>%
-  bind_cols(Group = rownames(loc1zt_df),.) %>%
+loc3ztt <- loc3zt %>%
+  bind_cols(Group = rownames(loc3zt_df),.) %>%
   select(Group, starts_with("OTU")) %>%
   pivot_longer(-Group) %>%
   mutate(total = sum(value)) %>%
@@ -21,12 +22,12 @@ loc1ztt <- loc1zt %>%
   ungroup() %>%
   select(-total)
 
-rand <- loc1ztt %>%
+rand <- loc3ztt %>%
   uncount(value) %>%
   mutate(name = sample(name)) %>%
   count(Group, name, name="value")
 
-metric_statistics <- loc1ztt %>%
+metric_statistics <- loc3ztt %>%
   group_by(Group) %>%
   summarize(sobs = richness(value),
             shannon = shannon(value),
@@ -34,7 +35,7 @@ metric_statistics <- loc1ztt %>%
             invsimpson = 1/simpson,
             n = sum(value))
 
-loc1ztt %>%
+loc3ztt %>%
   group_by(Group) %>%
   summarize(sobs = richness(value),
             shannon = shannon(value),
@@ -48,7 +49,7 @@ loc1ztt %>%
   geom_smooth() +
   facet_wrap(~metric, nrow = 4, scales = "free_y")
 
-### Zelfde maar dan met rand (random sampling)
+### Same plot generater but then for rand (random sampling)
 rand %>%
   group_by(Group) %>%
   summarize(sobs = richness(value),
@@ -64,8 +65,7 @@ rand %>%
   facet_wrap(~metric, nrow = 4, scales = "free_y")
 
 
-### Zelfde maar dan met vegan packages (random sampling)
-### Simpson is voornamelijk anders
+### Same plot generater but then with vegan packages instead of our own (random sampling)
 rand %>%
   group_by(Group) %>%
   summarize(sobs = specnumber(value),

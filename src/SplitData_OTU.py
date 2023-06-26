@@ -3,6 +3,10 @@ import pandas as pd
 import warnings
 warnings.simplefilter("ignore")
 
+# The function location views all extract numbers present in the `log_loc`, 
+# and compares them to the `log_extractNrs`, this is where all sample names are saved. 
+# If the subplots is the same as the subplot given to the function `S`, 
+# then the sample name is saved as a match in the macthing list.
 def location(log_extractNrs, log_loc):
   log_loc = log_loc[12:]
   loc_RegistCode = log_loc.values.tolist()
@@ -13,6 +17,7 @@ def location(log_extractNrs, log_loc):
         matching.append(i[0])
   return matching
 
+# This function created a template dataframe including all OTU and the taxonomic classification.
 def basic_file(raw_data):
   OTUnr, seq = [], []
   kingdomlist, phylumlist, classlist = [], [], []
@@ -35,12 +40,17 @@ def basic_file(raw_data):
     specieslist.append(i)
   for i in raw_data['seq']:
     seq.append(i)
-  new_dic = {'OTUnr': OTUnr, 'Kingdom': kingdomlist, 'Phylum': phylumlist, 'Class': classlist, 'Order': orderlist,
+  new_dic = {'OTUnr': OTUnr, 'Kingdom': kingdomlist, 'Phylum': phylumlist, 'Class': classlist,
+              'Order': orderlist,
              'Family': familylist, 'Genus': genuslist, 'Species': specieslist, 'seq': seq}
   loc_file = pd.DataFrame(new_dic, columns = ['OTUnr', 'Kingdom', 'Phylum', 'Class', 'Order',
                                               'Family', 'Genus', 'Species', 'seq'])
   return loc_file
 
+# This function all matches are compared to the raw data and the information 
+# is saved in the basic_file. 
+# At the end of the function all present samples of the locations are saved in 
+# basic_file and this is the output of the function.
 def new_files(raw_data, matches, basics_file):
   for i in matches:
     ilist = []
@@ -58,7 +68,7 @@ def main():
   log_loc3 = pd.read_excel('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/ARISE_Sample_information_logbook.xlsx', sheet_name='Location 3 list', usecols=[1])
   
   log_extractNrs = log_extractNrs.values.tolist()
-  loc1_match = location(log_extractNrs, log_loc1)
+  #loc1_match = location(log_extractNrs, log_loc1)
   #loc2_match = location(log_extractNrs, log_loc2)
   loc3_match = location(log_extractNrs, log_loc3)
 
@@ -67,9 +77,11 @@ def main():
   location1 = new_files(raw_data, loc1_match, basics_file)
   location1.to_csv('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location1OTU.csv', index=False)
 
+  
   #location2 = new_files(raw_data, loc2_match, basics_file)
   #location2.to_csv('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location2.csv', index=False)
-
+  basics_file = basic_file(raw_data)
+  
   location3 = new_files(raw_data, loc3_match, basics_file)
   location3.to_csv('/Users/winnythoen/Desktop/BioInformatica/Afstuderen/Naturalis/arise-soil-pilot-analysis/data/location3OTU.csv', index=False)
 

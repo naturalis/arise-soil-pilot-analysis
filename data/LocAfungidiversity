@@ -17,7 +17,8 @@
                   p__Rozellomycota                   p__Zoopagomycota 
                                303                                 47 
                                
-                               
+ TOTAAL = 9296
+ 9296 - 2940 = 6356
 The first '2940' is Untiteled, so unidentified.
 The thesis of Sophie states:
 The fungi diversity (amount of reads in %) of location 
@@ -43,3 +44,19 @@ Mortierellomycota -> 1,56%
 Nematoda -> 1,46%
 Rozellomycota -> 4,77%
 Zoopagomycota -> 0,74%
+
+LOCATION BERKHEIDE TOTAAL = 3634
+                                                          p__Annelida                      p__Anthophyta                 p__Aphelidiomycota 
+                              2045                                  4                                 56                                  2 
+                     p__Arthropoda                      p__Ascomycota               p__Basidiobolomycota                   p__Basidiomycota 
+                                10                               1981                                  1                                563 
+             p__Blastocladiomycota                       p__Bryophyta                        p__Cercozoa                     p__Chlorophyta 
+                                 3                                 19                                 14                                234 
+                p__Chytridiomycota                      p__Ciliophora                   p__Glomeromycota                            p__GS01 
+                                53                                339                                 24                                  1 
+                  p__Haplosporidia p__Heterolobosa_phy_Incertae_sedis                 p__Kickxellomycota              p__Monoblepharomycota 
+                                 7                                  4                                  3                                 14 
+              p__Mortierellomycota                    p__Mucoromycota                        p__Nematoda                      p__Ochrophyta 
+                                48                                 16                                 55                                  1 
+                  p__Olpidiomycota                   p__Rozellomycota                   p__Zoopagomycota 
+                                 1                                159                                 22 
